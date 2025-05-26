@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/interTwin-eu/HyDroForM:
+      branch: main
+      repo: https://github.com/interTwin-eu/HyDroForM
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/interTwin-eu/HyDroForM git:
+        commands:
+        - /usr/bin/env sh .sqa/script.bluesy-green-boar.sh
+        container: qc.acc_randy-cream-vole
+  QC.Doc:
+    repos:
+      github.com/interTwin-eu/HyDroForM find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.geeky-pear-horse.sh
+        container: qc.doc_lumpy-persimmon-birman
+      github.com/interTwin-eu/HyDroForM git:
+        commands:
+        - /usr/bin/env sh .sqa/script.pretty-vermilion-slug.sh
+        container: qc.doc_flabby-maroon-salamander
+      github.com/interTwin-eu/HyDroForM markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-cinnabar-akita.sh
+        container: qc.doc_gloppy-magenta-liger
+  QC.Lic:
+    repos:
+      github.com/interTwin-eu/HyDroForM licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-goldenrod-corgi.sh
+        container: qc.lic_wiggy-mustard-fowl
+  QC.Sec:
+    repos:
+      github.com/interTwin-eu/HyDroForM bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-bronze-gar.sh
+        container: qc.sec_beady-cinnamon-mayfly
+  QC.Sty:
+    repos:
+      github.com/interTwin-eu/HyDroForM flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-amber-maltese.sh
+        container: qc.sty_bluesy-grey-paradise
+      github.com/interTwin-eu/HyDroForM hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-peach-cow.sh
+        container: qc.sty_droopy-lavender-axolotl
+      github.com/interTwin-eu/HyDroForM jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-red-frise.sh
+        container: qc.sty_sloppy-scarlet-bordeaux
+  QC.Uni:
+    repos:
+      github.com/interTwin-eu/HyDroForM pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-puce-zorse.sh
+        container: qc.uni_grumpy-celadon-buzzard
+  QC.Ver:
+    repos:
+      github.com/interTwin-eu/HyDroForM get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-ochre-camel.sh
+        container: qc.ver_goopy-cobalt-sheep
+timeout: 5400
